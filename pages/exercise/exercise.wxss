@@ -1,0 +1,12 @@
+/* pages/exercise/exercise.wxss */
+.item {
+  width: 100%;
+}
+.item-header {
+  justify-content: flex-start;
+}
+
+.item-choices {
+  display: flex;
+  flex-direction: column;
+}

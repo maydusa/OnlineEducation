@@ -1,0 +1,16 @@
+<view class="container">
+  <input class="title" placeholder="请输入标题..." value="{{title}}" bindinput="updateTitle"></input>
+  <view class="content-wrap">
+    <textarea class="content" placeholder="请输入正文..." value="{{content}}" bindinput="updateContent"></textarea>
+    <view class="imgs">
+      <button class="btn-upload" bindtap="chooseImg"></button>
+      <view wx:for="{{imgs}}" wx:for-index="index" wx:for-item="item" wx:key="url" class="img-wrap">
+        <image class="img" src="{{item.url}}" mode="aspectFit" data-index="{{index}}" bindtap="handleImageTap"></image>
+        <view class="img-mask" wx:if="{{!item.isUpload}}">
+          <image class="uploading-icon" src="../../media/images/loading.png"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <button class="btn-submit" bindtap="submit">发布</button>
+</view>

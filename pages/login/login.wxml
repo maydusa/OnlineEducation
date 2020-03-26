@@ -1,0 +1,15 @@
+<view class="container">
+  <text class="title">Online Education</text>
+  <form class="form" bindsubmit="login">
+    <view class="form-item">
+      <image class="form-item-icon" src="../../media/images/email.png"></image>
+      <input class="form-item-input" name="email" placeholder="邮箱" type="text" value="{{email}}" bindinput="updateEmail"></input>
+    </view>
+    <view class="form-item">
+      <image class="form-item-icon" src="../../media/images/password.png"></image>
+      <input class="form-item-input" name="password" placeholder="密码" password="true" maxlength="12" value="{{password}}" bindinput="updatePassword"></input>
+    </view>
+    <button class="btn-login" form-type="submit">登录</button>
+  </form>
+</view>
+

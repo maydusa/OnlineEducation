@@ -1,0 +1,63 @@
+.container {
+  justify-content: flex-start;
+}
+.basic {
+  width: 100%;
+  padding: 20rpx;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  margin-bottom: 30rpx;
+}
+.basic-left {
+  display: flex;
+  align-items: center;
+}
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+  background-color: rgb(205, 206, 206);
+}
+.nickname {
+  font-size: 40rpx;
+  color: #414141;
+}
+.btn-login {
+  height: 80rpx;
+  color: #fff;
+  font-size: 30rpx;
+  text-indent: 10rpx;
+  letter-spacing: 10rpx;
+  padding: 10rpx;
+  margin: 0;
+  box-sizing: border-box;
+  line-height: 60rpx;
+  background-color: #53bfa2;
+}
+.menu-item {
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #fff;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  box-sizing: border-box;
+}
+.menu-item {
+  margin-bottom: 20rpx;
+}
+.menu-item-icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 15rpx;
+}
+.menu-item-text {
+  font-size: 32rpx;
+  color: #676767;
+}

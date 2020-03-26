@@ -1,0 +1,13 @@
+<view class="container">
+  <view class="basic">
+    <view class="basic-left">
+      <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+      <text class="nickname">{{userInfo.nickName}}</text>
+    </view>
+    <button wx:if="{{!isLogin}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" bindtap="login" class="btn-login">登录</button>
+  </view>
+  <view class="menu-item" bindtap="toStar">
+    <image class="menu-item-icon" src="../../media/images/unstar.png"></image>
+    <text class="menu-item-text">我收藏的</text>
+  </view>
+</view>

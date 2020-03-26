@@ -1,0 +1,51 @@
+/* pages/register/register.wxss */
+.container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #fff;
+}
+.title {
+  font-size: 50rpx;
+  color: #000;
+  font-weight: bold;
+  margin-top: 200rpx;
+  margin-bottom: 100rpx;
+}
+.form {
+  width: 400rpx;
+  padding: 20rpx;
+  border-radius: 15rpx;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+.form-item-input {
+  font-size: 35rpx;
+  border-bottom: 1px solid #53bfa2;
+}
+.form-item-icon {
+  width: 60rpx;
+  height: 50rpx;
+  margin-right: 30rpx;
+}
+.btn-submit {
+  width: 240rpx;
+  height: 100rpx;
+  margin-top: 70rpx;
+  background-color: #53bfa2;
+  border-radius: 20rpx;
+  border: none;
+  box-sizing: border-box;
+  line-height: 100rpx;
+  color: #fff;
+  font-weight: bold;
+  margin: 0 auto;
+}

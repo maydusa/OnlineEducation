@@ -1,0 +1,16 @@
+<!--pages/exercise/exercise.wxml-->
+<view class="container">
+  <view wx:for="{{exercises}}" wx:key="id" class="item">
+    <view class="item-header">
+      <text class="item-index">{{index + 1 + '. '}}</text>
+      <text class="item-title">{{item.title}}</text>
+    </view>
+    <view class="item-body">
+      <radio-group class="item-choices" wx:if="{{item.type < 3}}">
+        <radio wx:for="{{item.choices}}" wx:key="item">
+          <text>{{item}}</text>
+        </radio>
+      </radio-group>
+    </view>
+  </view>
+</view>

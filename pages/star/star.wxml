@@ -1,0 +1,20 @@
+<view class="container">
+  <scroll-view scroll-x="true" class="star-item-wrap" wx:for="{{star}}" wx:for-index="index" wx:for-item="item" wx:key="title" scroll-with-animation="true">
+    <view class="star-item">
+    <view class="star-item-left">
+    <image class="avatar" src="{{item.avatarUrl}}"></image>
+    <view class="star-item-body">
+      <view class="star-item-basic">
+        <text class="nickname">{{item.nickname}}</text>
+        <text class="date">{{item.create_time}}</text>
+      </view>
+      <text class="title">{{item.title}}</text>
+      <text class="content">{{item.content}}</text>
+    </view>
+    </view>
+    <view class="cancelStar" bindtap="cancelStar" data-discussId="{{item.discussId}}" data-index="{{index}}">
+      <text class="cancelStar-text">取消收藏</text>
+    </view>
+    </view>
+  </scroll-view>
+</view>

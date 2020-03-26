@@ -1,0 +1,23 @@
+<!--pages/register/register.wxml-->
+<view class="container">
+  <text class="title">Online Education</text>
+  <form class="form" bindsubmit="submit">
+    <view class="form-item">
+      <image class="form-item-icon" src="../../media/images/nickname.png"></image>
+      <input class="form-item-input" name="nickname" placeholder="昵称" type="text" maxlength="10" value="{{nickname}}" bindinput="updateNickname"></input>
+    </view>
+    <view class="form-item">
+      <image class="form-item-icon" src="../../media/images/email.png"></image>
+      <input class="form-item-input" name="email" placeholder="邮箱" type="text" value="{{email}}" bindinput="updateEmail"></input>
+    </view>
+    <view class="form-item">
+      <image class="form-item-icon" src="../../media/images/password.png"></image>
+      <input class="form-item-input" name="password" placeholder="密码" password="true" maxlength="12" value="{{password}}" bindinput="updatePassword"></input>
+    </view>
+    <view class="form-item">
+      <image class="form-item-icon" src="../../media/images/password.png"></image>
+      <input class="form-item-input" placeholder="确认密码" password="true" maxlength="12" value="{{comPassword}}" bindinput="updateCompassword"></input>
+    </view>
+    <button class="btn-submit" form-type="submit">注 册</button>
+  </form>
+</view>

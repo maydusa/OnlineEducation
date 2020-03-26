@@ -1,0 +1,2 @@
+<!--pages/demo/demo.wxml-->
+<web-view src="https://mydusa.xyz/upload/index.html" bindmessage="getMessage"></web-view>

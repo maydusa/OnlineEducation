@@ -1,0 +1,33 @@
+<view class="container">
+  <view class="discussion" wx:for="{{discussion}}" wx:for-index="index" wx:for-item="item" wx:key="title" data-id="{{item.id}}" bindtap="toDetail">
+    <view class="discussion-header">
+      <view class="userInfo">
+        <image class="avatar" src="{{item.avatarUrl}}"></image>
+        <text class="nickname">{{item.nickname}}</text>
+      </view>
+      <text class="date">{{item.create_time}}</text>
+    </view>
+    <view class="content-wrap">
+      <text class="title">{{item.title}}</text>
+      <text class="content">{{item.content}}</text>
+      <view class="images">
+        <image class="image" src="{{imgs}}" mode="aspectFit" wx:for="{{item.images}}" wx:for-index="index" wx:for-item="imgs" wx:key="imgs" bindtap="previewImg" data-imgs="{{item.images}}" data-index="{{index}}"></image>
+      </view>
+    </view>
+    <view class="operations">
+      <!-- <view class="operation-wrap" bindtap="star" data-starId="{{item.starId}}" data-index="{{index}}" data-id="{{item.id}}">
+        <image class="operation-icon" src="{{item.starId ? '../../media/images/star.png' : '../../media/images/unstar.png'}}"></image>
+        <text class="operation-text">{{item.starId ? '已收藏' : '收藏'}}</text>         
+      </view>
+      <view class="operation-wrap">  
+        <image class="operation-icon" src="../../media/images/comment.png"></image>
+        <text class="operation-text">评论</text>
+      </view> -->
+      <view class="operation-wrap" data-index="{{index}}" data-id="{{item.id}}">
+        <image class="operation-icon" src="../../media/images/unlike.png"></image>
+        <text class="operation-text">{{item.likes}}</text>
+      </view>
+    </view>
+  </view>
+  <!-- <image class="loading-icon" src="../../media/images/loading.png"></image> -->
+</view>

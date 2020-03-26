@@ -1,12 +1,44 @@
 {
-  "pages":[
+  "pages": [
+    "pages/demo/demo",
+    "pages/register/register",
+    "pages/discuss/discuss",
+    "pages/discussDetail/discussDetail",
+    "pages/star/star",
+    "pages/mine/mine",
+    "pages/editor/editor",
+    "pages/login/login",
+    
+    
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/exercise/exercise"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
-  }
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#53BFA2",
+    "navigationBarTitleText": "OnlineEducation",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#c3c3c3",
+    "selectedColor": "#53bfa2",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "组件"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "media/images/user.png",
+        "selectedIconPath": "media/images/user-active.png"
+      },
+      {
+        "pagePath": "pages/demo/demo",
+        "text": "demo"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
 }

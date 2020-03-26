@@ -1,0 +1,36 @@
+<view class="container">
+  <view class="detail">
+    <view class="detail-header">
+      <view class="detail-header-left">
+        <image class="detail-header-avatar" src="{{discuss.avatarUrl}}"></image>
+        <text class="detail-header-nickname">{{discuss.nickname}}</text>
+      </view>
+      <text class="detail-header-date">{{discuss.create_time}}</text>
+    </view>
+    <text class="detail-title">{{discuss.title}}</text>
+    <text class="detail-content">{{discuss.content}}</text>
+    <view class="detail-images">
+      <image class="detail-image" wx:for="{{discuss.images}}" wx:for-index="index" wx:for-item="item" wx:key="item" src="{{item}}" mode="aspectFit" data-index="{{index}}" bindtap="previewImg"></image>
+    </view>
+    <view class="detail-operations">
+      <view class="detail-operation-wrap" bindtap="star">
+        <image class="detail-operation-icon" src="{{discuss.starId ? '../../media/images/star.png' : '../../media/images/unstar.png'}}"></image>
+        <text class="detail-operation-text">{{discuss.starId ? '已收藏' : '收藏'}}</text>         
+      </view>
+      <view class="detail-operation-wrap" bindtap="comment">  
+        <image class="detail-operation-icon" src="../../media/images/comment.png"></image>
+        <text class="detail-operation-text">评论</text>
+      </view>
+      <view class="detail-operation-wrap" bindtap="like">
+        <image class="detail-operation-icon" src="{{discuss.likeId ? '../../media/images/like.png' : '../../media/images/unlike.png'}}"></image>
+        <text class="detail-operation-text">{{discuss.likes}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="comment">
+    <view class="comment-header">
+      <text class="comment-title">评论</text>
+    </view>
+
+  </view>
+</view>
