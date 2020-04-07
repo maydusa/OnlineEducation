@@ -110,26 +110,17 @@ Page({
       },
       success: res => {
         if (res.data.code == 0) {
-          let data = {
-            nickname: this.data.nickname,
-            email: this.data.email,
-            uid: res.data.uid,
-            token: res.data.token
-          }
-          wx.setStorage({
-            data: data,
-            key: 'userInfo',
+          setTimeout(() => {
+            wx.navigateTo({
+              url: '/pages/login/login',
+            })
+          }, 1500);
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: "none"
           })
         }
-        wx.showToast({
-          title: res.data.msg,
-          icon: "none"
-        })
-        setTimeout(() => {
-          wx.navigateTo({
-            url: '/pages/login/login',
-          })
-        }, 1500);
       }
     })
   }

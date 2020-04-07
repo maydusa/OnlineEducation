@@ -10,18 +10,18 @@
     <text class="detail-title">{{discuss.title}}</text>
     <text class="detail-content">{{discuss.content}}</text>
     <view class="detail-images">
-      <image class="detail-image" wx:for="{{discuss.images}}" wx:for-index="index" wx:for-item="item" wx:key="item" src="{{item}}" mode="aspectFit" data-index="{{index}}" bindtap="previewImg"></image>
+      <image class="detail-image" wx:for="{{discuss.images}}" wx:for-index="index" wx:for-item="item" wx:key="item" src="{{item}}" mode="aspectFit" data-imgs="{{discuss.images}}" data-index="{{index}}" bindtap="previewImg"></image>
     </view>
     <view class="detail-operations">
       <view class="detail-operation-wrap" bindtap="star">
         <image class="detail-operation-icon" src="{{discuss.starId ? '../../media/images/star.png' : '../../media/images/unstar.png'}}"></image>
-        <text class="detail-operation-text">{{discuss.starId ? '已收藏' : '收藏'}}</text>         
+        <text class="detail-operation-text">{{discuss.starId ? '已收藏' : '收藏'}}</text>
       </view>
       <view class="detail-operation-wrap" bindtap="comment">  
         <image class="detail-operation-icon" src="../../media/images/comment.png"></image>
         <text class="detail-operation-text">评论</text>
       </view>
-      <view class="detail-operation-wrap" bindtap="like">
+      <view class="detail-operation-wrap" bindtap="handleLike">
         <image class="detail-operation-icon" src="{{discuss.likeId ? '../../media/images/like.png' : '../../media/images/unlike.png'}}"></image>
         <text class="detail-operation-text">{{discuss.likes}}</text>
       </view>
@@ -31,6 +31,28 @@
     <view class="comment-header">
       <text class="comment-title">评论</text>
     </view>
-
+    <view class="comment-item" wx:for="{{comment}}" wx:for-index="index" wx:for-item="item" wx:key="content" data-commentId="{{item.id}}" bindtap="toCommentDetail">
+      <image class="comment-item-avatar" src="{{item.avatarUrl}}"></image>
+      <view class="comment-item-right">
+        <view class="comment-item-right-header">
+          <text class="comment-item-nickname">{{item.nickname}}</text>
+          <text class="comment-item-date">{{item.create_time}}</text>
+        </view>
+        <text class="comment-item-content">{{item.content}}</text>
+        <view class="comment-item-images">
+          <image class="comment-item-image" wx:for="{{item.images}}" wx:for-index="index" wx:for-item="image" wx:key="image" src="{{image}}" data-imgs="{{item.images}}" data-index="{{index}}" mode="aspectFit" bindtap="previewImg"></image>
+        </view>
+        <view class="comment-operations">
+          <view class="comment-operation-wrap">
+            <image class="operation-icon" src="../../media/images/comment.png"></image>
+            <text class="operation-text">回复</text>
+          </view>
+          <view class="comment-operation-wrap">
+            <image class="operation-icon" src="../../media/images/unlike.png"></image>
+            <text class="operation-text">{{item.likes}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
   </view>
 </view>

@@ -39,7 +39,6 @@
 .btn-submit {
   width: 240rpx;
   height: 100rpx;
-  margin-top: 70rpx;
   background-color: #53bfa2;
   border-radius: 20rpx;
   border: none;
@@ -47,5 +46,5 @@
   line-height: 100rpx;
   color: #fff;
   font-weight: bold;
-  margin: 0 auto;
+  margin: 70rpx auto 0 auto;
 }

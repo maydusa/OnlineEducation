@@ -1,7 +1,6 @@
 .container {
   justify-content: flex-start;
 }
-
 .detail {
   background-color: #fff;
   box-sizing: border-box;
@@ -82,59 +81,67 @@
   font-size: 32rpx;
   color: #666;
 }
-.comment {
+.reply {
   width: 100%;
   padding: 20rpx;
   box-sizing: border-box;
   background-color: #fff;
 }
-.comment-header {
+.reply-header {
   padding-bottom: 20rpx;
 }
-.comment-title {
+.reply-title {
   font-size: 32rpx;
   color: #666;
 }
-.comment-item {
-  display: flex;
-  width: 100%;
-  padding-top: 20rpx;
-  border-top: 1px solid #aeaeae;
-}
-.comment-item-avatar {
-  width: 60rpx;
-  height: 60rpx;
-  border-radius: 100%;
-  display: block;
-  margin-right: 15rpx;
-}
-.comment-item-right {
-  flex-grow: 1;
-  justify-content: flex-end;
-}
-.comment-item-right-header {
-  height: 60rpx;
+
+.reply-item-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15rpx;
+  margin-bottom: 10rpx;
 }
-.comment-item-nickname {
+.reply-item-header-left {
+  display: flex;
+  align-items: center;
+}
+.reply-item-avatar {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 100%;
+  margin-right: 15rpx;
+}
+.reply-item-nickname,
+.reply-item-toNickname {
+  color: #666;
   font-size: 36rpx;
-  color: #666;
 }
-.comment-item-date {
-  font-size: 30rpx;
-  color: #666;
+.reply-item-nickname {
+  margin-right: 10rpx;
 }
-.comment-item-content {
-  font-size: 35rpx;
+.arrow {
+  width: 0;
+  height: 0;
+  border-top: 10rpx solid rgba(0, 0, 0, 0);
+  border-right: 10rpx solid rgba(0, 0, 0, 0);
+  border-bottom: 10rpx solid rgba(0, 0, 0, 0);
+  border-left: 20rpx solid #666;
+}
+.reply-item-date {
+  color: #888;
+  font-size: 24rpx;
+}
+.reply-item-content {
+  font-size: 32rpx;
   color: #404040;
+  margin-bottom: 16rpx;
 }
-.comment-item-images {
-  margin: 10rpx -5rpx;
+.reply-item-images {
+  width: 100%;
+  margin-left: -5rpx;
+  margin-right: -5rpx;
 }
-.comment-item-image {
+.reply-item-image {
   width: 120rpx;
   height: 120rpx;
   border: 4rpx solid #d9d9d9;
@@ -142,24 +149,25 @@
   box-sizing: border-box;
   margin: 5rpx;
 }
-.comment-operations {
+.reply-operations {
   width: 100%;
   display: flex;
   justify-content: flex-end;
 }
-.comment-operation-wrap {
+.reply-operation-wrap {
   display: flex;
   align-items: center;
-}
-.comment-operation-wrap:first-of-type {
   margin-right: 20rpx;
 }
+.reply-operation-wrap:last-of-type {
+  margin-right: 0;
+}
 .operation-icon {
-  width: 34rpx;
-  height: 34rpx;
+  width: 30rpx;
+  height: 30rpx;
   margin-right: 10rpx;
 }
 .operation-text {
-  font-size: 34rpx;
+  font-size: 28rpx;
   color: #666;
 }

@@ -12,60 +12,146 @@ Page({
       create_time: 0,
       nickname: "",
       likeId: null
-    }
+    },
+    comment: [],
+    offset: 0,
+    hasMore: false
   },
 
   onLoad: function (options) {
     console.log(options.id)
     wx.request({
-      url: `${api['discuss']}?discussId=${2}`,
+      url: `${api['discuss']}?discussId=${1}`,
       method: "get",
       success: res => {
         console.log(res);
-        res.data.data.images = JSON.parse(res.data.data.images);
-        res.data.data.create_time = formatTime(res.data.data.create_time);
-        this.setData({discuss: res.data.data});
+        if (res.data.code === 0) {
+          res.data.data.images = JSON.parse(res.data.data.images);
+          res.data.data.create_time = formatTime(res.data.data.create_time);
+          this.setData({discuss: res.data.data});
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: "none"
+          })
+        }
+      }
+    })
+    wx.request({
+      url: `${api['comment']}?discussId=${2}&offset=${this.data.offset}`,
+      method: "get",
+      success: res => {
+        console.log(res);
+        if (res.data.code === 0) {
+          let tempComment = res.data.data.comment.map((item, index) => {
+            item.create_time = formatTime(item.create_time);
+            item.images = JSON.parse(item.images);
+            return item;
+          })
+          this.setData({
+            comment: [...this.data.comment, ...tempComment],
+            hasMore: res.data.data.hasMore
+          })
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: "none"
+          })
+        }
+      }
+    })
+  },
+
+  onReachBottom: function () {
+    if (!this.data.hasMore) return;
+    wx.request({
+      url: `${api['comment']}?discussId=${2}&offset=${this.data.offset}`,
+      method: "get",
+      success: res => {
+        console.log(res);
+        if (res.data.code === 0) {
+          let tempComment = res.data.data.comment.map((item, index) => {
+            item.create_time = formatTime(item.create_time);
+            item.images = JSON.parse(item.images);
+            return item;
+          })
+          this.setData({
+            comment: [...this.data.comment, ...tempComment],
+            hasMore: res.data.data.hasMore
+          })
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: "none"
+          })
+        }
       }
     })
   },
 
   previewImg: function (e) {
     console.log(this.data.discussion);
-    let { index } = e.currentTarget.dataset;
+    let { index, imgs } = e.currentTarget.dataset;
     wx.previewImage({
-      urls: this.data.discuss.images,
-      current: this.data.discuss.images[index]
+      urls: imgs,
+      current: imgs[index]
     })
   },
 
+  handleLike: function () {
+    if (this.data.discuss.likeId) {
+      this.dislike();
+    } else {
+      this.like();
+    }
+  },
+
   like: function (e) {
-    const { likeId } = this.data.discuss;
+    const { id } = this.data.discuss;
     wx.request({
       url: api['discussLike'],
       method: "post",
       data: {
-        id: this.data.discuss.id,
+        id: id,
         uid: getApp().globalData.userInfo.uid
       },
       success: res => {
         console.log(res);
-        if (res.data.code !== 0) {
+        if (res.data.code === 0) {
+          const tempDiscuss = this.data.discuss;
+          tempDiscuss.likes++;
+          tempDiscuss.likeId = true;
+          this.setData({discuss: tempDiscuss});
+        } else {
           wx.showToast({
             title: res.data.msg,
             icon: "none"
           })
-          return;
-        };
-        if (likeId) {
+        }
+      }
+    })
+  },
+
+  dislike: function () {
+    const { id } = this.data.discuss;
+    wx.request({
+      url: api['discussLike'],
+      method: "delete",
+      data: {
+        id: id,
+        uid: getApp().globalData.userInfo.uid
+      },
+      success: res => {
+        if (res.data.code === 0) {
           const tempDiscuss = this.data.discuss;
           tempDiscuss.likes--;
           tempDiscuss.likeId = false;
           this.setData({discuss: tempDiscuss})
         } else {
-          const tempDiscuss = this.data.discuss;
-          tempDiscuss.likes++;
-          tempDiscuss.likeId = true;
-          this.setData({discuss: tempDiscuss})           
+          wx.showToast({
+            title: res.data.msg,
+            icon: "none"
+          })
         }
       }
     })
@@ -104,7 +190,14 @@ Page({
 
   comment: function () {
     wx.navigateTo({
-      url: `/pages/editor/editor?id=${this.data.discuss.id}`,
+      url: `/pages/editor/editor?discussId=${this.data.discuss.id}&type=comment`,
+    })
+  },
+
+  toCommentDetail: function (e) {
+    const { commentid } = e.currentTarget.dataset;
+    wx.navigateTo({
+      url: `/pages/commentDetail/commentDetail?commentId=${commentid}`,
     })
   }
 })

@@ -1,0 +1,55 @@
+<view class="container">
+  <view class="detail">
+    <view class="detail-header">
+      <view class="detail-header-left">
+        <image class="detail-header-avatar" src="{{comment.avatarUrl}}"></image>
+        <text class="detail-header-nickname">{{comment.nickname}}</text>
+      </view>
+      <text class="detail-header-date">{{comment.create_time}}</text>
+    </view>
+    <text class="detail-content">{{comment.content}}</text>
+    <view class="detail-images">
+      <image class="detail-image" wx:for="{{comment.images}}" wx:for-index="index" wx:for-item="item" wx:key="item" src="{{item}}" mode="aspectFit" data-imgs="{{comment.images}}" data-index="{{index}}" bindtap="previewImg"></image>
+    </view>
+    <view class="detail-operations">
+      <view class="detail-operation-wrap" data-toUid="{{comment.uid}}" bindtap="replyComment">  
+        <image class="detail-operation-icon" src="../../media/images/comment.png"></image>
+        <text class="detail-operation-text">回复</text>
+      </view>
+      <view class="detail-operation-wrap" bindtap="handleLikeComment">
+        <image class="detail-operation-icon" src="{{comment.likeId ? '../../media/images/like.png' : '../../media/images/unlike.png'}}"></image>
+        <text class="detail-operation-text">{{comment.likes}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="reply">
+    <view class="reply-header">
+      <text class="reply-title">回复</text>
+    </view>
+    <view class="reply-item" wx:for="{{reply}}" wx:for-index="index" wx:for-item="item" wx:key="content" data-commentId="{{item.id}}">
+      <view class="reply-item-header">
+        <view class="reply-item-header-left">
+          <image class="reply-item-avatar" src="{{item.avatarUrl}}"></image>
+          <text class="reply-item-nickname">{{item.nickname}}</text>
+          <view class="arrow"></view>
+          <text class="reply-item-toNickname">{{item.toNickname}}</text>
+        </view>
+        <text class="reply-item-date">{{item.create_time}}</text>
+      </view>
+      <text class="reply-item-content">{{item.content}}</text>
+      <view class="reply-item-images">
+        <image class="reply-item-image" wx:for="{{item.images}}" wx:for-index="index" wx:for-item="image" wx:key="image" src="{{image}}" data-imgs="{{item.images}}" data-index="{{index}}" mode="aspectFit" bindtap="previewImg"></image>
+        </view>
+      <view class="reply-operations">
+        <view class="reply-operation-wrap" bindtap="replyReply" data-toUid="{{item.uid}}">
+          <image class="operation-icon" src="../../media/images/comment.png"></image>
+          <text class="operation-text">回复</text>
+        </view>
+        <view class="reply-operation-wrap" bindtap="handleLikeReply" data-replyId="{{item.id}}" data-likeId="{{item.likeId}}" data-index="{{index}}">
+          <image class="operation-icon" src="{{item.likeId ? '../../media/images/like.png' : '../../media/images/unlike.png'}}"></image>
+          <text class="operation-text">{{item.likes}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

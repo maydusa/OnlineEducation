@@ -6,8 +6,12 @@ const api = {
   register: `${domain}/register`,
   upload: `${domain}/upload`,
   discuss: `${domain}/discuss`,
+  comment: `${domain}/comment`,
+  reply: `${domain}/reply`,
   discussLike: `${domain}/discussLike`,
   discussStar: `${domain}/discussStar`,
+  commentLike: `${domain}/commentLike`,
+  replyLike: `${domain}/replyLike`,
   getStar: `${domain}/getStar`
 }
 

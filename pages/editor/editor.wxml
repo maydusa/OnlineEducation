@@ -1,5 +1,5 @@
 <view class="container">
-  <input class="title" placeholder="请输入标题..." value="{{title}}" bindinput="updateTitle"></input>
+  <input class="title" wx:if="{{!discussId && !commentId}}" placeholder="请输入标题..." value="{{title}}" bindinput="updateTitle"></input>
   <view class="content-wrap">
     <textarea class="content" placeholder="请输入正文..." value="{{content}}" bindinput="updateContent"></textarea>
     <view class="imgs">

@@ -4,11 +4,16 @@ Page({
   data: {
     imgs: [],
     title: "",
-    content: ""
+    content: "",
+    discussId: 0,
+    commentId: 0,
+    toUid: 0,
+    type: ""
   },
 
   onLoad: function (options) {
-    console.log(getApp())
+    console.log(options)
+    this.setData({discussId: options.discussId || 0, commentId: options.commentId || 0, toUid: options.toUid || 0, type: options.type || ""})
   },
 
   updateTitle: function (e) {
@@ -73,6 +78,16 @@ Page({
   },
 
   submit: function () {
+    const { type } = this.data;
+    switch(type) {
+      case "discuss": this.submitDiscuss();break;
+      case "comment": this.submitComment();break;
+      case "reply": this.submitReply();break;
+      default: return;
+    }
+  },
+
+  submitDiscuss: function () {
     let tempImgs = [], imgs = this.data.imgs;
     for (let i = 0; i < imgs.length; i++) {
       tempImgs.push(imgs[i].url);
@@ -92,6 +107,72 @@ Page({
           title: res.data.msg,
           icon: "none"
         })
+        setTimeout(() => {
+          wx.navigateBack({
+            complete: (res) => {
+
+            },
+          })
+        }, 1000);
+      }
+    })
+  },
+
+  submitComment: function () {
+    let tempImgs = [], imgs = this.data.imgs;
+    for (let i = 0; i < imgs.length; i++) {
+      tempImgs.push(imgs[i].url);
+    }
+    wx.request({
+      url: api['comment'],
+      method: "post",
+      data: {
+        discussId: this.data.discussId,
+        uid: getApp().globalData.userInfo.uid,
+        content: this.data.content,
+        imgs: tempImgs
+      },
+      success: res => {
+        console.log(res);
+        wx.showToast({
+          title: res.data.msg,
+          icon: "none"
+        })
+        setTimeout(() => {
+          wx.navigateBack({
+            complete: (res) => {},
+          })
+        }, 1000);
+      }
+    })
+  },
+
+  submitReply: function () {
+    let tempImgs = [], imgs = this.data.imgs;
+    for (let i = 0; i < imgs.length; i++) {
+      tempImgs.push(imgs[i].url);
+    }
+    wx.request({
+      url: api['reply'],
+      method: "post",
+      data: {
+        commentId: this.data.commentId,
+        uid: getApp().globalData.userInfo.uid,
+        content: this.data.content,
+        imgs: tempImgs,
+        toUid: this.data.toUid
+      },
+      success: res => {
+        console.log(res);
+        wx.showToast({
+          title: res.data.msg,
+          icon: "none"
+        })
+        setTimeout(() => {
+          wx.navigateBack({
+            complete: (res) => {},
+          })
+        }, 1000);
       }
     })
   }
