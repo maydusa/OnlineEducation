@@ -1,100 +1,76 @@
-// pages/exercise/exercise.js
+import { api } from "../../constants/api";
+
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
-    exercises: [
+    scrollId: "p0",
+    exercise: [
+      {"typeType":0,"typeText":["单选题","判断题","问答题"],"titleType":0,"titleText":["文本","图片"],"title":"这是题目","titleImg":{"url":"","isUpload":false},"answerType":0,"answerText":["文本","图片"],"answer":"答案就是好好学习","answerImg":{"url":"","isUpload":false},"choice":["链表","树","图","栈"]}
+      // {
+      //   id: 1,
+      //   title: "problem 1",
+      //   type: 1,
+      //   choices: [
+      //     "apple",
+      //     "orange",
+      //     "vegetable",
+      //     "helo"
+      //   ]
+      // },
+      // {
+      //   id: 2,
+      //   title: "problem 2",
+      //   type: 2,
+      //   choices: ["是", "否"]
+      // }
+    ],
+    answer: [
       {
-        id: 1,
-        title: "problem 1",
-        type: 1,
-        choices: [
-          "apple",
-          "orange",
-          "vegetable",
-          "helo"
-        ]
-      },
-      {
-        id: 2,
-        title: "problem 2",
-        type: 2,
-        choices: ["是", "否"]
+        answerType: 0,
+        answerText: [
+          "文本",
+          "图片"
+        ],
+        choice: "",
+        content: "",
+        img: {url: "", isUpload: false}
       }
-    ]
+    ],
+    isComplete: false,
+    exerciseId: 0
   },
 
-  getuser: function() {
-    console.log("hahaha");
-    wx.authorize({
-      scope: 'scope.userInfo',
-      success: (res) => {
-        console.log(res)
-      },
-      fail: err => {
-        console.log(err);
-      },
-      complete: () => {
-        console.log('complete')
-      }
-    })
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
 
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
   onReady: function () {
 
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  handleChoice: function (e) {
+    const { index } = e.currentTarget.dataset;
+    const { answer } = this.data;
+    answer[index].choice = e.detail.value;
+    this.setData({answer});
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  complete: function () {
+    wx.request({
+      url: api['answer'],
+      method: "post",
+      data: {
+        uid: getApp().globalData.userInfo.uid,
+        exerciseId: this.data.exerciseId,
+        content: JSON.stringify(this.data.answer)
+      },
+      success: res => {
+        console.log(res);
+        if (res.data.code === 0) {
+          this.setData({isComplete: true})
+        }
+      }
+    })
   }
+
 })

@@ -1,5 +1,6 @@
 import { api } from "../../constants/api";
 import { formatTime } from "../../utils/util";
+import { pageSize } from "../../constants/config";
 
 Page({
 
@@ -21,7 +22,8 @@ Page({
   onLoad: function (options) {
     console.log(options.id)
     wx.request({
-      url: `${api['discuss']}?discussId=${1}`,
+      url: `${api['discuss']}?discussId=${2}&uid=${getApp().globalData.userInfo
+      .uid}`,
       method: "get",
       success: res => {
         console.log(res);
@@ -29,6 +31,7 @@ Page({
           res.data.data.images = JSON.parse(res.data.data.images);
           res.data.data.create_time = formatTime(res.data.data.create_time);
           this.setData({discuss: res.data.data});
+          console.log(res.data.data)
         } else {
           wx.showToast({
             title: res.data.msg,
@@ -37,8 +40,11 @@ Page({
         }
       }
     })
+  },
+
+  onShow: function () {
     wx.request({
-      url: `${api['comment']}?discussId=${2}&offset=${this.data.offset}`,
+      url: `${api['comment']}?discussId=${2}&offset=0`,
       method: "get",
       success: res => {
         console.log(res);
@@ -49,7 +55,8 @@ Page({
             return item;
           })
           this.setData({
-            comment: [...this.data.comment, ...tempComment],
+            comment: [ ...tempComment],
+            offset: 0 + pageSize,
             hasMore: res.data.data.hasMore
           })
         } else {
@@ -77,6 +84,7 @@ Page({
           })
           this.setData({
             comment: [...this.data.comment, ...tempComment],
+            offset: this.data.offset + pageSize,
             hasMore: res.data.data.hasMore
           })
         } else {
@@ -182,7 +190,7 @@ Page({
         } else {
           const tempDiscuss = this.data.discuss;
           tempDiscuss.starId = true;
-          this.setData({discuss: tempDiscuss})           
+          this.setData({discuss: tempDiscuss})
         }
       }
     })

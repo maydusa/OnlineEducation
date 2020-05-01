@@ -1,0 +1,78 @@
+.container {
+  align-items: flex-start;
+  background-color: #fff;
+  justify-content: flex-start;
+}
+.operations {
+  position: fixed;
+  right: 10px;
+  bottom: 10rpx;
+}
+.btn-operation {
+  width: 120rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 32rpx;
+  background-color: #53bfa2;
+  text-indent: 15rpx;
+  letter-spacing: 15rpx;
+}
+.btn-add {
+  margin-bottom: 10rpx;
+}
+.course {
+  width: 100%;
+  display: flex;
+  box-sizing: border-box;
+  padding: 25rpx;
+  border-bottom: 1px solid #888;
+}
+.course-right {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.course-right-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.cover {
+  width: 200rpx;
+  height: 120rpx;
+  background-color: #53bfa2;
+  border-radius: 10rpx;
+  margin-right: 20rpx;
+}
+.title-wrap {
+  display: flex;
+  align-items: center;
+}
+.title {
+  font-size: 34rpx;
+  color: #666;
+  margin-right: 15rpx;
+}
+.input-title {
+  width: 405rpx;
+  font-size: 34rpx;
+  color: #666;
+  border-bottom: 1px solid #999;
+  box-sizing: border-box;
+  margin-right: 15rpx;
+}
+.btn-edit-title {
+  font-size: 34rpx;
+  color: #53bfa2;
+}
+.size {
+  font-size: 30rpx;
+  color: #888;
+}
+.btn-delete {
+  font-size: 30rpx;
+  color: #ff4d4f;
+}

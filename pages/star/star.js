@@ -4,51 +4,66 @@ import { formatTime } from "../../utils/util";
 Page({
 
   data: {
-    star: [],
-    offset: 0,
-    hasMore: false
+    tabIndex: 0,
+    courseStar: [],
+    discussStar: []
   },
 
   onLoad: function (options) {
-    console.log(getApp().globalData)
-    setTimeout(() => {
-      wx.request({
-        url: `${api['getStar']}?uid=${getApp().globalData.userInfo.uid}&offset=${this.data.offset}`,
-        method: "get",
-        success: res => {
-          console.log(res);
-          if (res.data.code === 0) {
-            let tempStar = res.data.data.star.map((item, index) => {
-              item.create_time = formatTime(item.create_time);
-              return item;
-            })
-            this.setData({
-              star: [...this.data.star, ...tempStar],
-              offset: this.data.offset + 10,
-              hasMore: res.data.data.hasMore
-            })
-          }
-        }
-      })
-    }, 600);
-
+    this.fetchCourseStar();
+    this.fetchDiscussStar();
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  cancelStar: function (e) {
-    const { discussid, index } = e.currentTarget.dataset;
-    console.log(e.currentTarget.dataset)
+  fetchCourseStar: function () {
     wx.request({
-      url: api['discussStar'],
+      url: `${api['getCourseStar']}?uid=6`,
+      method: "get",
+      success: res => {
+        console.log(res);
+        if (res.data.code === 0) {
+          const tempStar = res.data.data;
+          tempStar.map(item => {
+            item.create_time = formatTime(item.create_time);
+            return item;
+          })
+          this.setData({courseStar: tempStar});
+        }
+      }
+    })
+  },
+
+  fetchDiscussStar: function () {
+    wx.request({
+      url: `${api['getDiscussStar']}?uid=5`,
+      method: "get",
+      success: res => {
+        console.log(res);
+        if (res.data.code === 0) {
+          const tempStar = res.data.data;
+          tempStar.map(item => {
+            item.create_time = formatTime(item.create_time);
+            return item;
+          })
+          this.setData({discussStar: res.data.data});
+        }
+      }
+    })
+  },
+
+  toggleTab: function (e) {
+    const { index } = e.currentTarget.dataset;
+    console.log(index);
+    this.setData({tabIndex: index});
+  },
+
+  cancelCourseStar: function (e) {
+    console.log(e.currentTarget.dataset);
+    const { courseid, index } = e.currentTarget.dataset;
+    wx.request({
+      url: api['courseStar'],
       method: "post",
       data: {
-        id: discussid,
+        courseId: courseid,
         uid: getApp().globalData.userInfo.uid
       },
       success: res => {
@@ -60,9 +75,34 @@ Page({
           })
           return;
         };
-        const tempStar = this.data.star;
+        const tempStar = this.data.courseStar;
         tempStar.splice(index, 1);
-        this.setData({star: tempStar});
+        this.setData({courseStar: tempStar});
+      }
+    })
+  },
+
+  cancelDiscussStar: function (e) {
+    const { discussid, index } = e.currentTarget.dataset;
+    wx.request({
+      url: api['discussStar'],
+      method: "post",
+      data: {
+        discussId: discussid,
+        uid: getApp().globalData.userInfo.uid
+      },
+      success: res => {
+        console.log(res);
+        if (res.data.code !== 0) {
+          wx.showToast({
+            title: res.data.msg,
+            icon: "none"
+          })
+          return;
+        };
+        const tempStar = this.data.discussStar;
+        tempStar.splice(index, 1);
+        this.setData({discussStar: tempStar});
       }
     })
   }

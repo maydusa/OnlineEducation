@@ -1,0 +1,66 @@
+<view class="container">
+  <scroll-view id="exercise-pages" class="exercise-pages" scroll-with-animation="true" scroll-y="true" scroll-into-view="{{scrollId}}">
+    <view id="{{'p' + index}}" class="exercise" wx:for="{{exercise}}" wx:key="index" wx:for-item="item">
+      <text class="exercise-index">{{index + 1 + '.'}}</text>
+      <view class="exercise-body">
+        <picker range="{{item.typeText}}" value="{{item.typeType}}" bindchange="handlePickType" data-index="{{index}}">
+          <view class="picker">
+            题目类型：{{item.typeText[item.typeType]}}
+          </view>
+        </picker>
+        <picker range="{{item.titleText}}" value="{{item.titleType}}" bindchange="handlePickTitleType" data-index="{{index}}">
+          <view class="picker">
+            题目输入类型：{{item.titleText[item.titleType]}}
+          </view>
+        </picker>
+        <view class="title-input-block">
+          <text class="title-input-label">题目：</text>
+          <textarea wx:if="{{item.titleType == '0'}}" class="title-input-area" value="{{item.title}}" placeholder="在此输入题目..." bindinput="updateTitle" data-index="{{index}}"></textarea>
+          <view class="img-picker" wx:if="{{item.titleType == 1}}">
+            <view class="img-wrap" wx:if="{{exercise[index].titleImg.url}}">
+              <image class="img" src="{{exercise[index].titleImg.url}}" mode="aspectFit" data-type="0" data-index="{{index}}" data-imgs="{{[exercise[index].titleImg]}}" bindtap="handleImageTap"></image>
+              <view class="img-mask" wx:if="{{!exercise[index].titleImg.isUpload}}">
+                <image class="uploading-icon" src="../../media/images/loading.png"></image>
+              </view>
+            </view>
+            <button wx:if="{{!exercise[index].titleImg.url}}" class="btn-upload" data-type="0" data-index="{{index}}" bindtap="chooseImg"></button>
+          </view>
+        </view>
+        <view class="choice-input-block" wx:if="{{item.typeType == 0}}">
+          <text class="choices-label">选项:</text>
+          <view class="choice" wx:for="{{exercise[index].choice}}" wx:for-index="choiceIndex" wx:for-item="choice" wx:key="choiceIndex">
+            <text wx:if="{{choiceIndex == 0}}" class="choice-label">A:</text>
+            <text wx:if="{{choiceIndex == 1}}" class="choice-label">B:</text>
+            <text wx:if="{{choiceIndex == 2}}" class="choice-label">C:</text>
+            <text wx:if="{{choiceIndex == 3}}" class="choice-label">D:</text>
+            <input class="choice-input" bindinput="updateChoice" data-index="{{index}}" data-choiceIndex="{{choiceIndex}}" value="{{exercise[index].choice[choiceIndex]}}"></input>
+          </view>
+        </view>
+        <picker range="{{item.answerText}}" value="{{item.answerType}}" bindchange="handlePickAnswerType" data-index="{{index}}">
+          <view class="picker">
+            答案输入类型：{{item.answerText[item.titleType]}}
+          </view>
+        </picker>
+        <view class="answer-input-block">
+          <text class="answer-input-label">答案：</text>
+          <textarea wx:if="{{item.answerType == '0'}}" class="answer-input-area" value="{{item.answer}}" placeholder="在此输入答案..." bindinput="updateAnswer" data-index="{{index}}"></textarea>
+          <view class="img-picker" wx:if="{{item.answerType == 1}}">
+            <view class="img-wrap" wx:if="{{item.answerImg.url}}">
+              <image class="img" src="{{item.answerImg.url}}" mode="aspectFit" data-type="1" data-index="{{index}}" data-imgs="{{[item.answerImg]}}" bindtap="handleImageTap"></image>
+              <view class="img-mask" wx:if="{{!item.answerImg.isUpload}}">
+                <image class="uploading-icon" src="../../media/images/loading.png"></image>
+              </view>
+            </view>
+            <button wx:if="{{!item.answerImg.url}}" class="btn-upload" data-type="1" data-index="{{index}}" bindtap="chooseImg"></button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <view class="btns">
+    <button wx:if="{{scrollId > 'p0'}}" class="btn-prev btn" bindtap="toPrev">上一题</button>
+    <button wx:if="{{scrollId < 'p' + (exercise.length - 1)}}" class="btn-next btn" bindtap="toNext">下一题</button>
+    <button class="btn-add btn" bindtap="add">添加</button>
+    <button class="btn-add btn" bindtap="complete">完成</button>
+  </view>
+</view>

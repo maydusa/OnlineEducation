@@ -1,0 +1,16 @@
+<view class="container">
+  <scroll-view scroll-y="true" class="dialogue">
+    <view class="{{item.isSelf ? 'single-msg-self' : 'single-msg-other'}}" wx:for="{{msgs}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+      <image src="{{item.isSelf ? uidUserInfo.avatarUrl : touidUserInfo.avatarUrl}}" class="{{item.isSelf ? 'avatar-self avatar' : 'avatar-other avatar'}}"></image>
+      <view class="{{item.isSelf ? 'msg-right-self' : 'msg-right-other'}}">
+        <text class="nickname">{{item.isSelf ? uidUserInfo.nickname : touidUserInfo.nickname}}</text>
+        <view class="content">{{item.content}}</view>
+      </view>
+    </view>
+  </scroll-view>
+  <view class="input-block">
+    <textarea auto-height="true" value="{{message}}" class="input" bindinput="updateMessage"></textarea>
+    <!-- <image src="../../media/images/image.png" class="input-block-icon" bindtap="chooseImg"></image> -->
+    <image src="../../media/images/send.png" class="input-block-icon" bindtap="send"></image>
+  </view>
+</view>

@@ -1,0 +1,43 @@
+.container {
+  justify-content: flex-start;
+}
+.code-input {
+  width: 90%;
+  height: 800rpx;
+  background-color: #fff;
+  box-shadow: #ebebeb 0px 0px 6px;
+  margin-top: 20rpx;
+  margin-bottom: 15rpx;
+  border-radius: 10rpx;
+  color: #666;
+  padding: 5rpx;
+}
+.img-icon {
+  width: 60rpx;
+  height: 66rpx;
+}
+.operations {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+.btn-run {
+  height: 66rpx;
+  line-height: 66rpx;
+  font-size: 30rpx;
+  color: #fff;
+  background-color: #53bfa2;
+  border-radius: 10rpx;
+  box-sizing: border-box;
+  padding: 0 15rpx;
+}
+.output {
+  width: 90%;
+  height: 240rpx;
+  background-color: #fff;
+  box-shadow: #ebebeb 0px 0px 6px;
+  margin-top: 20rpx;
+  border-radius: 10rpx;
+  color: #666;
+  padding: 5rpx;
+}

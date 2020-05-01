@@ -1,0 +1,23 @@
+{
+  "name": "onlineeducation",
+  "version": "1.0.0",
+  "description": "Graduation Project--An app for online-education.",
+  "main": "app.js",
+  "dependencies": {
+    "@antv/wx-f2": "^2.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maydusa/OnlineEducation.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maydusa/OnlineEducation/issues"
+  },
+  "homepage": "https://github.com/maydusa/OnlineEducation#readme"
+}

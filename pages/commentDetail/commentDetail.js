@@ -22,7 +22,7 @@ Page({
 
   onLoad: function (options) {
     wx.request({
-      url: `${api['comment']}?commentId=${5}`,
+      url: `${api['comment']}?commentId=${5}&uid=${getApp().globalData.userInfo.uid}`,
       method: "get",
       success: res => {
         console.log(res)

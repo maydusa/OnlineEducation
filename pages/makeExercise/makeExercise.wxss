@@ -1,0 +1,142 @@
+.container {
+  align-items: flex-start;
+  background-color: #fff;
+  font-size: 34rpx;
+  color: #666;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+}
+.picker {
+  width: 100%;
+}
+.btns {
+  position: fixed;
+  right: 10rpx;
+  bottom: 10rpx;
+  z-index: 100;
+}
+.btn {
+  width: 120rpx;
+  height: 60rpx;
+  background-color: #53bfa2;
+  color: #fff;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 30rpx;
+  margin-bottom: 5rpx;
+}
+.btn:last-of-type {
+  margin-bottom: 0;
+}
+.exercise-pages {
+  height: 100vh;
+}
+.exercises {
+  display: flex;
+  flex-direction: row;
+}
+.exercise {
+  display: flex;
+  flex-shrink: 0;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  padding: 20rpx;
+}
+.exercise-index {
+  margin-right: 15rpx;
+}
+.exercise-body {
+  flex-grow: 1;
+}
+
+.title-input-block,
+.answer-input-block {
+  display: flex;
+  flex-direction: column;
+}
+.title-input-area,
+.answer-input-area {
+  width: 100%;
+  height: 240rpx;
+  border: 1px solid #888;
+  border-radius: 10rpx;
+  padding: 15rpx;
+  box-sizing: border-box;
+}
+.btn-upload {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 10rpx;
+  border: 4rpx dashed #d9d9d9;
+  background-color: #fafafa;
+  background-image: url("http://localhost:3001/images/add.png");
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 5rpx;
+}
+.img-picker {
+  margin-left: -5rpx;
+  margin-right: -5rpx;
+  width: 100%;
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+  flex-direction: row;
+}
+.img-wrap {
+  width: 120rpx;
+  height: 120rpx;
+  border: 4rpx solid #d9d9d9;
+  border-radius: 10rpx;
+  box-sizing: border-box;
+  margin: 5rpx;
+  overflow: hidden;
+  position: relative;
+}
+.img {
+  width: 120rpx;
+  height: 120rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.img-mask {
+  width: 120rpx;
+  height: 120rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.uploading-icon {
+  width: 60rpx;
+  height: 60rpx;
+  animation: rotate 2s infinite;
+}
+.choice {
+  display: flex;
+  align-items: center;
+}
+.choice-label {
+  margin-right: 10rpx;
+}
+.choice-input {
+  border-bottom: 1px solid #666;
+  flex-grow: 1;
+}
+
+@keyframes rotate{
+  0% {
+    transform: rotate(0deg);
+  }
+  100%{ 
+    transform: rotate(360deg);
+  }
+}

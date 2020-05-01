@@ -2,12 +2,24 @@
   <view class="basic">
     <view class="basic-left">
       <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
-      <text class="nickname">{{userInfo.nickName}}</text>
+      <text class="nickname">{{userInfo.nickname}}</text>
     </view>
-    <button wx:if="{{!isLogin}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" bindtap="login" class="btn-login">登录</button>
+    <button wx:if="{{!isLogin}}" bindtap="login" class="btn-login">登录</button>
+    <button wx:if="{{isLogin}}" bindtap="login" class="btn-logout">注销</button>
   </view>
   <view class="menu-item" bindtap="toStar">
-    <image class="menu-item-icon" src="../../media/images/unstar.png"></image>
-    <text class="menu-item-text">我收藏的</text>
+    <image class="menu-item-icon" src="../../media/images/mystar.png"></image>
+    <text class="menu-item-text">我的收藏</text>
+  </view>
+  <view class="menu-item menu-item-message" bindtap="toMessage">
+    <view class="menu-item-left">
+      <image class="menu-item-icon" src="../../media/images/message.png"></image>
+      <text class="menu-item-text">我的消息</text>    
+    </view>
+    <view class="messages" wx:if="{{message !== 0}}">{{message}}</view>
+  </view>
+  <view class="menu-item" bindtap="toData">
+    <image class="menu-item-icon" src="../../media/images/data.png"></image>
+    <text class="menu-item-text">我的数据</text>
   </view>
 </view>

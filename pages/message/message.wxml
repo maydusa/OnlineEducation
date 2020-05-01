@@ -1,0 +1,9 @@
+<view class="container">
+  <view class="msg-item" wx:for="{{msg}}" wx:for-item="item" wx:for-index="index" wx:key="index" data-index="{{index}}" bindtap="toCom">
+    <view class="msg-item-left">
+      <image src="{{item.avatarUrl}}" class="avatar"></image>
+      <text class="text">{{item.nickname + ' 发来' + item.num + '条消息'}}</text>
+    </view>
+    <image src="../../media/images/msg.png" class="icon"></image>
+  </view>
+</view>

@@ -31,7 +31,7 @@ App({
     isLogin: false,
     userInfo: {
       nickname: "未登录",
-      avatarUrl: "../../media/images/user.png",
+      avatarUrl: "http://localhost:3001/images/avatar.png",
       type: 0
     }
   }

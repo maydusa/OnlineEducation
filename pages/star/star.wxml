@@ -1,20 +1,38 @@
 <view class="container">
-  <scroll-view scroll-x="true" class="star-item-wrap" wx:for="{{star}}" wx:for-index="index" wx:for-item="item" wx:key="title" scroll-with-animation="true">
-    <view class="star-item">
-    <view class="star-item-left">
-    <image class="avatar" src="{{item.avatarUrl}}"></image>
-    <view class="star-item-body">
-      <view class="star-item-basic">
-        <text class="nickname">{{item.nickname}}</text>
-        <text class="date">{{item.create_time}}</text>
+  <view class="tabs">
+    <view class="{{tabIndex == 0 ? 'tab-item tab-item-active' :'tab-item'}}" data-index="0" bindtap="toggleTab">课程</view>
+    <view class="{{tabIndex == 1 ? 'tab-item tab-item-active' :'tab-item'}}" data-index="1" bindtap="toggleTab">评论</view>
+  </view>
+  <scroll-view scroll-x="true" class="star-item-wrap" scroll-with-animation="true" wx-if="{{tabIndex == 0}}" wx:for="{{courseStar}}" wx:for-index="index" wx:for-item="item" wx:key="title">
+    <view class="course-star-item">
+      <view class="course-star-item-left">
+        <image class="cover" src="{{item.cover || '../../media/images/bg-video.png'}}"></image>
+        <view class="course-star-item-body">
+          <text class="title">{{item.title}}</text>
+          <text class="course-nickname">{{item.nickname}}</text>
+        </view>
       </view>
-      <text class="title">{{item.title}}</text>
-      <text class="content">{{item.content}}</text>
+      <view class="cancelStar" bindtap="cancelCourseStar" data-courseId="{{item.courseId}}" data-index="{{index}}">
+        <text class="cancelStar-text">取消收藏</text>
+      </view>
     </view>
-    </view>
-    <view class="cancelStar" bindtap="cancelStar" data-discussId="{{item.discussId}}" data-index="{{index}}">
-      <text class="cancelStar-text">取消收藏</text>
-    </view>
+  </scroll-view>
+  <scroll-view scroll-x="true" class="star-item-wrap" scroll-with-animation="true" wx:if="{{tabIndex == 1}}"  wx:for="{{discussStar}}" wx:for-index="index" wx:for-item="item" wx:key="title">
+    <view class="star-item">
+      <view class="star-item-left">
+        <image class="avatar" src="{{item.avatarUrl}}"></image>
+        <view class="star-item-body">
+          <view class="star-item-basic">
+            <text class="nickname">{{item.nickname}}</text>
+            <text class="date">{{item.create_time}}</text>
+          </view>
+          <text class="title">{{item.title}}</text>
+          <text class="content">{{item.content}}</text>
+        </view>
+      </view>
+      <view class="cancelStar" bindtap="cancelDiscussStar" data-discussId="{{item.discussId}}" data-index="{{index}}">
+        <text class="cancelStar-text">取消收藏</text>
+      </view>
     </view>
   </scroll-view>
 </view>

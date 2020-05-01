@@ -1,2 +1,6 @@
 <!--pages/demo/demo.wxml-->
-<web-view src="https://mydusa.xyz/upload/index.html" bindmessage="getMessage"></web-view>
+<!-- <web-view src="https://mydusa.xyz/upload/index.html" bindmessage="getMessage"></web-view> -->
+
+<view class="container">
+  <f2 class="f2-chart" onInit="{{onInitChart}}" />
+</view>

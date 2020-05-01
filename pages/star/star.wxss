@@ -1,13 +1,27 @@
 .container {
   justify-content: flex-start;
 }
+.tabs {
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1.2px solid #777;
+}
+.tab-item {
+  height: 80rpx;
+  font-size: 34rpx;
+  line-height: 80rpx;
+  color: #666;
+}
+.tab-item-active {
+  color: #53bfa2;
+  border-bottom: 1.5px solid #53bfa2;
+}
 .star-item-wrap {
   width: 100%;
   background-color: #fff;
   border-bottom: 1px solid #aeaeae;
-}
-.star-item-wrap:last-of-type {
-  border-bottom: none;
 }
 .star-item {
   width: 100%;
@@ -15,7 +29,10 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
+}
+.star-item:last-of-type {
+  border-bottom: none;
 }
 .star-item-left {
   width: 100%;
@@ -91,4 +108,41 @@
   font-size: 32rpx;
   text-align: center;
   letter-spacing: 8rpx;
+}
+
+.course-star-item-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.course-nickname {
+  font-size: 32rpx;
+  color: #888;
+}
+.course-date {
+  font-size: 30rpx;
+  color: #888;
+}
+.course-star-item {
+  width: 100%;
+  height: 160rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.course-star-item-left {
+  width: 100%;
+  min-width: 100%;
+  padding: 20rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+.cover {
+  width: 200rpx;
+  height: 120rpx;
+  border-radius: 10rpx;
+  margin-right: 20rpx;
 }

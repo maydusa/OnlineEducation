@@ -1,0 +1,58 @@
+<view class="container">
+  <video class="video" id="video" src="{{course.url}}" controls="true" danmu-btn="true" enable-danmu="true" danmu-list="{{danmu}}" show-play-btn="true" show-center-play-btn="true" bindtimeupdate="updateTime"></video>
+  <view class="menu">
+    <view class="tabs-wrap">
+      <view class="tabs">
+        <view class="{{tabIndex == 0 ? 'tab-item tab-item-active' : 'tab-item'}}" bindtap="toggleTab" data-index="0">
+          笔记
+        </view>
+        <view class="{{tabIndex == 1 ? 'tab-item tab-item-active' : 'tab-item'}}" bindtap="toggleTab" data-index="1">
+          弹幕
+        </view>
+      </view>
+    </view>
+    <view class="btn-like btn" bindtap="handleLike">
+      <view class="btn-header">
+        <image src="../../media/images/like-white.png" class="btn-icon-like btn-icon"></image>
+        <text class="btn-num">{{course.likes}}</text>
+      </view>
+      <text class="btn-text">{{course.likeId ? '已赞' : '点赞'}}</text>
+    </view>
+    <view class="btn-star btn" bindtap="star">
+      <image src="../../media/images/star-white.png" class="btn-icon-star btn-icon"></image>
+      <text class="btn-text">{{course.starId ? '已收藏' : '收藏'}}</text>
+    </view>
+    <view class="btn-exercise btn" bindtap="makeExercise">
+      <image src="../../media/images/homework.png" class="btn-icon-homework btn-icon"></image>
+      <text class="btn-text">{{course.uid === getApp().globalData.userInfo.uid ? '命题' : '作业'}}</text>
+    </view>
+  </view>
+  <view class="notes" wx:if="{{tabIndex == 0}}">
+    <view class="note" wx:for="{{note}}" wx:for-item="item" wx:key="content">
+      <view class="note-header">
+        <view class="note-header-left">
+          <image src="{{item.avatarUrl}}" class="avatar"></image>
+          <text class="nickname">{{item.nickname}}</text>
+        </view>
+        <text class="date">{{item.create_time}}</text>
+      </view>
+      <text class="content">{{item.content}}</text>
+    </view>
+  </view>
+  <view class="danmus" wx:if="{{tabIndex == 1}}">
+    <view class="danmu" wx:for="{{danmu}}" wx:for-item="item" wx:key="index">
+      <view class="danmu-header">
+        <view class="danmu-header-left">
+          <image src="{{item.avatarUrl}}" class="avatar"></image>
+          <text class="nickname">{{item.nickname}}</text>
+        </view>
+        <text class="date">{{item.create_time}}</text>
+      </view>
+      <text class="content">{{item.text}}</text>
+    </view>
+  </view>
+  <view class="input-block">
+    <textarea class="input" auto-height="true" value="{{noteText}}" bindinput="updateNote"></textarea>
+    <image src="../../media/images/send.png" class="send-icon" bindtap="send"></image>
+  </view>
+</view>

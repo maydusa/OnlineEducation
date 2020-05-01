@@ -1,4 +1,3 @@
-/* pages/register/register.wxss */
 .container {
   display: flex;
   justify-content: flex-start;

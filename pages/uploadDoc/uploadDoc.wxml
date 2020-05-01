@@ -1,0 +1,18 @@
+<view class="container">
+  <view class="operations">
+    <button class="btn-add btn-operation" bindtap="add">添加</button>
+    <button class="btn-upload btn-operation" bindtap="upload">上传</button>
+  </view>
+  <view class="doc" wx:for="{{doc}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+    <view class="cover"></view>
+    <view class="doc-right">
+      <view class="title-wrap">
+        <text class="title">{{item.title}}</text>
+      </view>
+      <view class="doc-right-footer">
+        <text class="size">{{item.size}}</text>
+        <text class="btn-delete" data-index="{{index}}" bindtap="delete">删除</text>
+      </view>
+    </view>
+  </view>
+</view>

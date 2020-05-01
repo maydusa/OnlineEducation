@@ -1,1 +1,5 @@
 /* pages/demo/demo.wxss */
+.f2-chart {
+  width: 100%;
+  height: 500rpx;
+}

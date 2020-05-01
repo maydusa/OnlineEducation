@@ -1,17 +1,24 @@
 {
   "pages": [
-    "pages/discussDetail/discussDetail", 
+    "pages/index/index",
+    "pages/ask/ask",
+    "pages/videoCourse/videoCourse",
+    "pages/exercise/exercise",
+    "pages/uploadCourse/uploadCourse",
+    "pages/makeExercise/makeExercise",
+    "pages/login/login",
+    "pages/runcode/runcode",
+    "pages/profile/profile",
+    "pages/editor/editor",
+    "pages/uploadDoc/uploadDoc",
     "pages/commentDetail/commentDetail",
-      
+    "pages/discussDetail/discussDetail",
     "pages/demo/demo",
     "pages/register/register",
     "pages/discuss/discuss",
     "pages/star/star",
     "pages/mine/mine",
-    "pages/editor/editor",
-    "pages/login/login",
-    "pages/index/index",
-    "pages/exercise/exercise"
+    "pages/message/message"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -26,17 +33,27 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "组件"
+        "text": "首页",
+        "iconPath": "media/images/index.png",
+        "selectedIconPath": "media/images/index-active.png"
+      },
+      {
+        "pagePath": "pages/discuss/discuss",
+        "text": "讨论",
+        "iconPath": "media/images/discuss.png",
+        "selectedIconPath": "media/images/discuss-active.png"
+      },
+      {
+        "pagePath": "pages/runcode/runcode",
+        "text": "练习",
+        "iconPath": "media/images/code.png",
+        "selectedIconPath": "media/images/code-active.png"
       },
       {
         "pagePath": "pages/mine/mine",
         "text": "我的",
         "iconPath": "media/images/user.png",
         "selectedIconPath": "media/images/user-active.png"
-      },
-      {
-        "pagePath": "pages/demo/demo",
-        "text": "demo"
       }
     ]
   },

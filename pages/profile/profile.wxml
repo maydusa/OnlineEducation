@@ -1,0 +1,48 @@
+<view class="container">
+  <view class="header">
+    <view class="btn-ask" bindtap="ask">向TA提问</view>
+    <image src="{{userInfo.avatarUrl}}" class="avatar"></image>
+    <text class="nickname">{{userInfo.nickname}}</text>
+    <text class="email">{{userInfo.email}}</text>
+  </view>
+  <view class="list-wrap">
+    <view class="tabs">
+      <view class="tab-item {{tabIndex === index ? 'tab-item-active' : ''}}" wx:for="{{tabs}}" wx:for-item="item" wx:for-index="index" wx:key="item" data-index="{{index}}" bindtap="changeTab">
+        {{item}}
+      </view>
+    </view>
+    <view class="CourseList" wx:if="{{tabIndex === 0}}">
+      <view class="list-item" wx:for="{{CourseList}}" wx:for-item="item" wx:for-index="index" wx:key="index" data-index="{{index}}" bindtap="toCourse">
+        <image src="{{item.cover || '../../media/images/bg-video.png'}}" class="cover"></image>
+        <view class="list-item-right">
+          <text class="filename">{{item.title}}</text>
+          <view class="extra">
+            <text class="size">{{item.size}}</text>
+            <text class="views" wx:if="{{tabIndex === 0}}">{{item.views + ' 次观看'}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="DocList" wx:if="{{tabIndex === 1}}">
+      <view class="list-item" wx:for="{{DocList}}" wx:for-item="item" wx:for-index="index" wx:key="index" data-index="{{index}}" bindtap="downloadDoc">
+        <image src="{{item.cover}}" class="cover"></image>
+        <view class="list-item-right">
+          <text class="filename">{{item.title}}</text>
+          <view class="extra">
+            <text class="size">{{item.size}}</text>
+            <text class="downloads">{{item.downloads + ' 次下载'}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="DiscussList" wx:if="{{tabIndex === 2}}">
+      <view class="list-item discuss-list-item" wx:for="{{DiscussList}}" wx:for-item="discuss" wx:for-index="index" wx:key="index" data-index="{{index}}" bindtap="toDiscuss">
+        <text class="title">{{discuss.title}}</text>
+        <text class="content">{{discuss.content}}</text>
+        <view class="discuss-images">
+          <image class="discuss-image" wx:for="{{discuss.images}}" wx:for-index="index" wx:for-item="item" wx:key="item" src="{{item}}" mode="aspectFit" data-imgs="{{discuss.images}}" data-index="{{index}}" bindtap="previewImg"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -12,7 +12,28 @@ const api = {
   discussStar: `${domain}/discussStar`,
   commentLike: `${domain}/commentLike`,
   replyLike: `${domain}/replyLike`,
-  getStar: `${domain}/getStar`
+  getDiscussStar: `${domain}/getDiscussStar`,
+  getCourseStar: `${domain}/getCourseStar`,
+  uploadCourse: `${domain}/uploadCourse`,
+  uploadDoc: `${domain}/uploadDoc`,
+  course: `${domain}/course`,
+  courseLike: `${domain}/courseLike`,
+  courseStar: `${domain}/courseStar`,
+  note: `${domain}/note`,
+  userInfo: `${domain}/userInfo`,
+  doc: `${domain}/doc`,
+  runcode: `${domain}/runcode`,
+  ocr: `${domain}/ocr`,
+  exercise: `${domain}/exercise`,
+  answer: `${domain}/answer`,
+  danmu: `${domain}/danmu`,
+  hotCourse: `${domain}/hotCourse`,
+  hotDoc: `${domain}/hotDoc`,
+  isMessage: `${domain}/isMessage`,
+  searchCourse: `${domain}/searchCourse`,
+  searchDoc: `${domain}/searchDoc`,
+  message: `${domain}/message`,
+  communication: `${domain}/communication`
 }
 
 module.exports = {

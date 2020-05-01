@@ -27,25 +27,33 @@ Page({
   chooseImg: function () {
     wx.chooseImage({
       success: res => {
-        console.log(res);
-        const tempFilePaths = res.tempFilePaths;
+        const { tempFilePaths } = res;
+        const tempFileArr = [];
         for (let i = 0; i < tempFilePaths.length; i++) {
-          tempFilePaths[i] = {url: tempFilePaths[i], isUpload: true};
+          tempFileArr[i] = {url: tempFilePaths[i], isUpload: false};
         }
-        this.setData({imgs: [...this.data.imgs, ...res.tempFilePaths]});
+        this.setData({imgs: [...this.data.imgs, ...tempFileArr]});
         for (let i = 0; i < tempFilePaths.length; i++) {
           wx.uploadFile({
-            filePath: tempFilePaths[i].url,
+            filePath: tempFilePaths[i],
             name: 'file',
             url: api['upload'],
             formData: {
               uid: getApp().globalData.userInfo.uid
             },
             success: res => {
-              console.log(res);
-              let tempImgs = this.data.imgs;
-              tempImgs[i].isUpload = true;
-              this.setData({imgs: tempImgs});
+              let data = JSON.parse(res.data);
+              if (data.code === 0) {
+                let tempImgs = this.data.imgs;
+                tempImgs[tempImgs.length - 1 + i].isUpload = true;
+                tempImgs[tempImgs.length - 1 + i].url = data.data[0].url;
+                this.setData({imgs: tempImgs});
+              } else {
+                wx.showToast({
+                  title: data.msg,
+                  icon: "none"
+                })
+              }
             }
           });
         }

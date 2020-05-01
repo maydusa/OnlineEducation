@@ -1,3 +1,34 @@
-<!--index.wxml-->
 <view class="container">
+  <view class="search-block">
+    <image class="search-icon" src="../../media/images/search.png"></image>
+    <input class="search-input" value="{{searchText}}" bindinput="updateSearchText" bindconfirm="search"></input>
+  </view>
+  <view class="tabs">
+    <view class="{{tabIndex == 0 ? 'tab-item tab-item-active' : 'tab-item'}}" data-index="0" bindtap="toggleTab">课程</view>
+    <view class="{{tabIndex == 1 ? 'tab-item tab-item-active' : 'tab-item'}}" data-index="1" bindtap="toggleTab">文档</view>
+  </view>
+  <view class="list" wx:if="{{tabIndex == 0}}">
+    <view class="list-item" wx:for="{{course}}" wx:for-item="item" wx:for-index="index" wx:key="index" data-index="{{index}}" bindtap="toCourse">
+      <image src="{{item.cover || '../../media/images/bg-video.png'}}" class="cover"></image>
+      <view class="list-item-right">
+        <text class="filename">{{item.title}}</text>
+        <view class="extra">
+          <text class="views">{{item.views + ' 次观看'}}</text>
+          <text class="time">{{item.create_time}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="list" wx:if="{{tabIndex == 1}}">
+    <view class="list-item" wx:for="{{doc}}" wx:for-item="item" wx:for-index="index" wx:key="index" data-index="{{index}}" bindtap="downloadDoc">
+      <image src="{{item.cover}}" class="cover"></image>
+      <view class="list-item-right">
+        <text class="filename">{{item.title}}</text>
+        <view class="extra">
+          <text class="downloads">{{item.downloads + ' 次下载'}}</text>
+          <text class="time">{{item.create_time}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
 </view>

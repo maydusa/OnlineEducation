@@ -1,0 +1,125 @@
+.container {
+  justify-content: flex-start;
+}
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  width: 100%;
+  padding: 40rpx 20rpx;
+  margin-bottom: 20rpx;
+  position: relative;
+  box-sizing: border-box;
+}
+.btn-ask {
+  font-size: 30rpx;
+  color: #53bfa2;
+  border: 1.2px solid #53bfa2;
+  border-radius: 10rpx;
+  padding: 8rpx;
+  position: absolute;
+  right: 10rpx;
+  top: 10rpx;
+}
+.nickname {
+  font-size: 34rpx;
+  color: #666;
+}
+.email {
+  font-size: 32rpx;
+  color: #888;
+}
+.avatar {
+  width: 100rpx;
+  height: 100rpx;
+}
+.list-wrap {
+  width: 100%;
+  background-color: #fff;
+}
+.tabs {
+  width: 100%;
+  display: flex;
+  height: 90rpx;
+  box-shadow: 0 2px 8px #f0f1f2;
+}
+.tab-item {
+  flex: 1;
+  text-align: center;
+  line-height: 90rpx;
+  font-size: 36rpx;
+  color: #666;
+}
+.tab-item-active {
+  color: #53bfa2;
+  border-bottom: 3px solid #53bfa2;
+}
+.list {
+  padding-top: 15rpx;
+  padding-bottom: 15rpx;
+}
+.list-item {
+  padding: 15rpx;
+  display: flex;
+}
+.list-item-right {
+  flex: 1;
+}
+.cover {
+  width: 200rpx;
+  height: 120rpx;
+  background-color: #53bfa2;
+  border-radius: 10rpx;
+  margin-right: 20rpx;
+}
+.filename {
+  font-size: 32rpx;
+  color: #666;
+}
+.extra {
+  font-size: 32rpx;
+  color: #888;
+  margin-top: 20rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.discuss-list-item {
+  flex-direction: column;
+}
+.title {
+  font-size: 36rpx;
+  color: #666;
+  font-weight: 700;
+  margin-bottom: 10rpx;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
+.content {
+  font-size: 32rpx;
+  color: #888;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  margin-bottom: 10rpx;
+}
+.discuss-images {
+  width: 100%;
+  margin-left: -5rpx;
+  margin-right: -5rpx;
+}
+.discuss-image {
+  width: 120rpx;
+  height: 120rpx;
+  border: 4rpx solid #d9d9d9;
+  border-radius: 10rpx;
+  box-sizing: border-box;
+  margin: 5rpx;
+}

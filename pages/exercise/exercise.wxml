@@ -1,8 +1,56 @@
-<!--pages/exercise/exercise.wxml-->
 <view class="container">
-  <view wx:for="{{exercises}}" wx:key="id" class="item">
+  <scroll-view id="exercise-pages" class="exercise-pages" scroll-with-animation="true" scroll-y="true" scroll-into-view="{{scrollId}}">
+    <view id="{{'p' + index}}" class="exercise" wx:for="{{exercise}}" wx:key="index" wx:for-item="item">
+      <text class="exercise-index">{{index + 1 + '.'}}</text>
+      <view class="exercise-body">
+        <text class="title" wx:if="{{item.titleType == 0}}">{{item.title}}</text>
+        <image class="img" wx:if="{{item.titleType == 1}}" src="{{item.titleImg.url}}" bindtap="handleImageTap"></image>
+        <radio-group class="item-choice" wx:if="{{item.typeType < 2}}" bindchange="handleChoice" data-index="{{index}}">
+          <radio class="item-choice-item" wx:for="{{item.choice}}" wx:key="choiceIndex" wx:for-item="choiceItem" wx:for-index="choiceIndex" value="{{choiceItem}}">
+            <text wx:if="{{choiceIndex == 0}}">{{'A. ' + choiceItem}}</text>
+            <text wx:if="{{choiceIndex == 1}}">{{'B. ' + choiceItem}}</text>
+            <text wx:if="{{choiceIndex == 2}}">{{'C. ' + choiceItem}}</text>
+            <text wx:if="{{choiceIndex == 3}}">{{'D. ' + choiceItem}}</text>
+          </radio>
+        </radio-group>
+        <picker wx:if="{{item.typeType == 2}}" range="{{answer[index].answerText}}" value="{{answer[index].answerType}}" bindchange="handlePickAnswerType" data-index="{{index}}">
+          <view class="picker">
+            答案输入类型：{{answer[index].answerText[answer[index].answerType]}}
+          </view>
+        </picker>
+        <view wx:if="{{item.typeType == 2}}" class="answer-input-block">
+          <text class="answer-input-label">答案：</text>
+          <textarea wx:if="{{answer[index].answerType == '0'}}" class="answer-input-area" value="{{answer[index].answer}}" placeholder="在此输入答案..." bindinput="updateAnswer" data-index="{{index}}"></textarea>
+          <view class="img-picker" wx:if="{{answer[index].answerType == 1}}">
+            <view class="img-wrap" wx:if="{{answer[index].img.url}}">
+              <image class="img" src="{{answer[index].img.url}}" mode="aspectFit" data-index="{{index}}" data-imgs="{{[answer[index].img]}}" bindtap="handleImageTap"></image>
+              <view class="img-mask" wx:if="{{!answer[index].img.isUpload}}">
+                <image class="uploading-icon" src="../../media/images/loading.png"></image>
+              </view>
+            </view>
+            <button wx:if="{{!answer[index].img.url}}" class="btn-upload" data-index="{{index}}" bindtap="chooseImg"></button>
+          </view>
+        </view>
+        <view wx:if="{{isComplete}}" class="right-answer">
+          <text>参考答案：</text>
+          <text wx:if="{{item.answerType == 0}}">{{item.answer}}</text>
+          <image class="img" wx:if="{{item.answerType == 1}}" src="{{item.answerImg.url}}"></image>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <view class="btns">
+    <button wx:if="{{scrollId > 'p0'}}" class="btn-prev btn" bindtap="toPrev">上一题</button>
+    <button wx:if="{{scrollId < 'p' + (exercise.length - 1)}}" class="btn-next btn" bindtap="toNext">下一题</button>
+    <button class="btn-add btn" bindtap="complete">完成</button>
+  </view>
+
+
+
+  <!-- <view wx:for="{{exercise}}" wx:key="id" class="item">
+    <text class="item-index">{{index + 1 + '. '}}</text>
     <view class="item-header">
-      <text class="item-index">{{index + 1 + '. '}}</text>
+      
       <text class="item-title">{{item.title}}</text>
     </view>
     <view class="item-body">
@@ -12,5 +60,5 @@
         </radio>
       </radio-group>
     </view>
-  </view>
+  </view> -->
 </view>
